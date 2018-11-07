@@ -1,0 +1,58 @@
+package com.tracnghiem.onthi.quang.ontracnghiemthpt.monthi;
+
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
+
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.R;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.examadapter.ExamAdapter;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.modelexam.Exam;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.slide.SlideActivity;
+
+import java.util.ArrayList;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class MonDiaLyFragment extends Fragment {
+    private ExamAdapter examAdapter;
+    private GridView gridView;
+    ArrayList<Exam> arrayList = new ArrayList<>();
+
+    public MonDiaLyFragment() {
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_mon_dia_ly, container, false);
+    }
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        gridView = getActivity().findViewById(R.id.grviewdialy);
+        arrayList.add(new Exam(" Địa Lý : đề số 1"));
+        arrayList.add(new Exam(" Địa Lý : đề số 2"));
+        arrayList.add(new Exam(" Địa Lý : đề số 3"));
+        arrayList.add(new Exam(" Địa Lý : đề số 4"));
+
+        examAdapter = new ExamAdapter(getActivity(), arrayList);
+        gridView.setAdapter(examAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getContext(), SlideActivity.class);
+                intent.putExtra("masodekiemtra", i + 1);
+                intent.putExtra("monhoc", "DiaLy");
+                startActivity(intent);
+            }
+        });
+
+    }
+}

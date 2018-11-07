@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:title="Ôn Tập">
+            <menu>
+                <item
+                    android:title="Kho kiến thức"
+                    android:id="@+id/nav_khokienthuc"
+                    android:icon="@drawable/ic_forum_black_24dp"/>
+            </menu>
+        </item>
+        <item android:title="Thi Trắc Nghiệm">
+            <menu>
+                <item
+                    android:id="@+id/nav_toan"
+                    android:icon="@drawable/ic_work_black_24dp"
+                    android:title="Môn Lịch Sử" />
+                <item
+                    android:id="@+id/nav_dialy"
+                    android:icon="@drawable/ic_work_black_24dp"
+                    android:title="Môn Địa Lý" />
+                <item
+                android:id="@+id/nav_sinhhoc"
+                android:icon="@drawable/ic_work_black_24dp"
+                android:title="Môn Sinh Học" />
+                <item
+                    android:id="@+id/nav_gdcd"
+                    android:icon="@drawable/ic_work_black_24dp"
+                    android:title="Môn GDCD" />
+            </menu>
+        </item>
+    </group>
+
+    <item android:title="Danh Mục Khác">
+        <menu>
+            <item
+                android:id="@+id/nav_thongke"
+                android:icon="@drawable/ic_local_offer_black_24dp"
+                android:title="Lịch sử làm bài" />
+            <item
+                android:id="@+id/navthoat"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Thoát !" />
+        </menu>
+    </item>
+
+</menu>

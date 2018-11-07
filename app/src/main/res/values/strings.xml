@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">On Trac Nghiem THPT</string>
+    <string name="login">Đăng Nhập</string>
+    <string name="username">Tên đăng nhập !</string>
+    <string name="password">Mật Khẩu !</string>
+    <string name="app_login">Đăng Nhập</string>
+    <string name="app_create">Tạo tài khoản !</string>
+    <string name="app_dangki">Đăng Kí</string>
+    <string name="title_activity_drawer">DrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_danhsach">Danh sách câu trả lời !</string>
+    <string name="action_dong">Đóng</string>
+    <string name="action_ketthuc">Kết Thúc</string>
+    <string name="app_ketqua">Kết Quả</string>
+    <string name="app_caudung">Số câu đúng !  :</string>
+    <string name="app_causai">Số câu sai ! :</string>
+    <string name="app_cauchuatraloi">Số câu chưa làm ! :</string>
+    <string name="app_diem">Tổng Điểm</string>
+    <string name="app_lamlai">Làm Lại</string>
+    <string name="app_luudiem">Lưu Điểm</string>
+    <string name="app_thoat">Thoát</string>
+    <string name="app_chamngon">I- CON ĐƯỜNG DẪN TỚI CHIẾN TRANH
+1. Các nước phát xít đẩy mạnh chính sách xâm lược
+- Trong những năm 30, các nước phát xít Đức, Italia và Nhật Bản đã liên minh với
+nhau hình thành nên liên minh phát xít - khối Trục. Khối này ngày càng đẩy mạnh các
+hoạt động quân sự và gây chiến tranh xâm lược ở nhiều khu vực khác nhau trên thế
+giới.
+- Sau khi lên cầm quyền, Chính phủ Hítle ngày càng ngang nhiên xé bỏ Hoà ước
+Vécxai, hướng tới thành lập một nước &quot;Đại Đức&quot; bao gồm tất cả các lãnh thổ của dân
+Đức sinh sống ở châu Âu.
+- Trong bối cảnh đó, Liên Xô coi chủ nghĩa phát xít là kẻ thù nguy hiểm nhất, chủ
+trương hợp tác với các nước tư bản Anh, Pháp để chống phát xít và nguy cơ chiến tranh,
+kiên quyết đứng về phía các nước chủ nghĩa bị chủ nghĩa phát xít xâm lược.
+- Vì muốn giữ nguyên trật tự thế giới có lợi cho mình, Chính phủ các nước Anh,
+Pháp đã không thành thật hợp tác với Liên Xô, thực hiện chính sách nhân nhượng chủ
+nghĩa phát xít, hòng đẩy chiến tranh về phía Liên Xô. Còn Mĩ, với Đạo luật trung lập,
+giới cầm quyền nước này thi hành chính sách không can thiệp vào các sự kiện bên
+ngoài châu Mĩ. </string>
+    <string name="app_chamngonn">Chinh phục mọi thứ </string>
+    <string name="app_loginn">Trải Nghiệm Ngay</string>
+</resources>
