@@ -53,6 +53,10 @@ public class MonSuFragment extends Fragment {
         arrayList.add(new Exam("Lịch sử  : đề số 2"));
         arrayList.add(new Exam("Lịch sử  : đề số 3"));
         arrayList.add(new Exam("Lịch sử  : đề số 4"));
+        arrayList.add(new Exam("Lịch sử  : đề số 5"));
+        arrayList.add(new Exam("Lịch sử  : đề số 6"));
+        arrayList.add(new Exam("Lịch sử  : đề số 7"));
+        arrayList.add(new Exam("Lịch sử  : đề số 8"));
 
         examAdapter = new ExamAdapter(getActivity(),arrayList);
         gridView.setAdapter(examAdapter);

@@ -12,29 +12,31 @@ import android.widget.TextView;
 
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.R;
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.modelexam.Exam;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.modelexam.ExamOntap;
 
 import java.util.ArrayList;
 
-public class ExamAdapter extends ArrayAdapter<Exam> {
-    public ExamAdapter(@NonNull Context context, ArrayList<Exam> exams) {
-        super(context,0, exams);
+public class OntapAdapter extends ArrayAdapter<ExamOntap> {
+
+    public OntapAdapter(Context context, ArrayList<ExamOntap> examOntaps) {
+        super(context,0, examOntaps);
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        if(convertView ==null){
+        if (convertView==null){
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-            convertView = layoutInflater.inflate(R.layout.item_girdview,parent,false);
+            convertView = layoutInflater.inflate(R.layout.item_grilviewontap,parent,false);
+        }
+        TextView tv = (TextView) convertView.findViewById(R.id.tvMonOntap);
+        ImageView img = (ImageView) convertView.findViewById(R.id.imgOntap);
+        ExamOntap ontap = getItem(position);
+        if(ontap !=null){
+            tv.setText(""+ontap.getNameontap());
+            img.setImageResource(Integer.parseInt(""+ontap.getImg()));
+        }
 
-        }
-        TextView tvname = (TextView) convertView.findViewById(R.id.tvde1);
-        ImageView image = (ImageView) convertView.findViewById(R.id.imageView);
-        Exam x = getItem(position);
-        if(x !=null){
-            tvname.setText(""+x.getName());
-            image.setImageResource(R.drawable.logodethi);
-        }
         return convertView;
     }
 }

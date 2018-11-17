@@ -1,8 +1,11 @@
 package com.tracnghiem.onthi.quang.ontracnghiemthpt;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,9 +18,12 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.database.DatabseHelper;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.monontap.OntapFragment;
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.monthi.MonDiaLyFragment;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.monthi.MonGDCDFragment;
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.monthi.MonSinhFragment;
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.monthi.MonSuFragment;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.slide.SlideActivity;
 
 import java.io.IOException;
 
@@ -48,10 +54,12 @@ public class DrawerActivity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new OntapFragment()).commit();
+        getSupportActionBar().setTitle("Kho Kiến Thức");
+        drawerLayout.closeDrawers();
         DatabseHelper databseHelper = new DatabseHelper(this);
-
-//        databseHelper.deleteDataBase();
-//        Toast.makeText(this, "Xóa thành công", Toast.LENGTH_SHORT).show();
+        databseHelper.deleteDataBase();
+        Toast.makeText(this, "Xóa thành công", Toast.LENGTH_SHORT).show();
         try {
             databseHelper.createDataBase();
             Toast.makeText(this, "Cap nhat thanh cong", Toast.LENGTH_SHORT).show();
@@ -67,7 +75,21 @@ public class DrawerActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            AlertDialog.Builder builder = new AlertDialog.Builder(DrawerActivity.this);
+            builder.setTitle("Thoát");
+            builder.setMessage("Xác nhận thoát !");
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    finish();
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                }
+            });
+            builder.show();
         }
     }
 
@@ -77,7 +99,6 @@ public class DrawerActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.drawer, menu);
         return true;
     }
-
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
 //        int id = item.getItemId();
@@ -88,13 +109,15 @@ public class DrawerActivity extends AppCompatActivity
 //        return super.onOptionsItemSelected(item);
 //    }
 
+
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_khokienthuc) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new OnTapFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new OntapFragment()).commit();
             getSupportActionBar().setTitle("Kho Kiến Thức");
             drawerLayout.closeDrawers();
         }
@@ -113,17 +136,35 @@ public class DrawerActivity extends AppCompatActivity
             getSupportActionBar().setTitle("Môn Sinh Học");
             drawerLayout.closeDrawers();
         }
-        if (id == R.id.nav_dialy) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new MonDiaLyFragment()).commit();
-            getSupportActionBar().setTitle("Môn Địa Lý");
+        if (id == R.id.nav_gdcd) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new MonGDCDFragment()).commit();
+                getSupportActionBar().setTitle("Môn GDCD");
             drawerLayout.closeDrawers();
         }if (id == R.id.nav_thongke) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new ThongKeFragment()).commit();
             getSupportActionBar().setTitle("Lịch Sử Làm Bài");
             drawerLayout.closeDrawers();
         }
+        if(id ==R.id.nav_thoat){
+            AlertDialog.Builder builder = new AlertDialog.Builder(DrawerActivity.this);
+            builder.setTitle("Thoát");
+            builder.setMessage("Bạn có thực sự muốn thoát !");
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    finish();
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                }
+            });
+            builder.show();
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

@@ -38,11 +38,15 @@ public class MonGDCDFragment extends Fragment {
     }
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        gridView = getActivity().findViewById(R.id.grviewsinh);
+        gridView = getActivity().findViewById(R.id.grviewgdcd);
         arrayList.add(new Exam(" GDCD : đề số 1"));
         arrayList.add(new Exam(" GDCD : đề số 2"));
         arrayList.add(new Exam(" GDCD : đề số 3"));
         arrayList.add(new Exam(" GDCD : đề số 4"));
+        arrayList.add(new Exam(" GDCD : đề số 5"));
+        arrayList.add(new Exam(" GDCD : đề số 6"));
+        arrayList.add(new Exam(" GDCD : đề số 7"));
+        arrayList.add(new Exam(" GDCD : đề số 8"));
 
         examAdapter = new ExamAdapter(getActivity(), arrayList);
         gridView.setAdapter(examAdapter);
@@ -51,7 +55,7 @@ public class MonGDCDFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getContext(), SlideActivity.class);
                 intent.putExtra("masodekiemtra", i + 1);
-                intent.putExtra("monhoc", "DiaLy");
+                intent.putExtra("monhoc", "GDCD");
                 startActivity(intent);
             }
         });

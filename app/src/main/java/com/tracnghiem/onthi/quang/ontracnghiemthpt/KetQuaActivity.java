@@ -63,7 +63,6 @@ public class KetQuaActivity extends AppCompatActivity {
 
         }
     }
-
     public void LamLai(View view) {
     }
 
@@ -80,28 +79,32 @@ public class KetQuaActivity extends AppCompatActivity {
         final EditText tvmonhocdialog = viewDialog.findViewById(R.id.edmonhoc_dialog);
         final TextView tvtongquan = viewDialog.findViewById(R.id.tvtongquan);
         final TextView tvdiemso = viewDialog.findViewById(R.id.tvdiem_dialog);
-        final double diem = soCauDung * 0.25;
-        tvtongquan.setText(+soCauDung+"/40");
+        final double diem = soCauDung * 0.5;
+        tvtongquan.setText(+soCauDung+"/20");
         tvdiemso.setText(""+diem);
 
-        builder.setPositiveButton("Thêm", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Lưu", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                Button button = ((AlertDialog) dialogInterface).getButton(AlertDialog.BUTTON_POSITIVE);
                 String hoten = edthoten.getText().toString();
                 String monhoc =  tvmonhocdialog.getText().toString();
                 String tq = tvtongquan.getText().toString();
                 tkDiem.insertDiem(hoten,monhoc,tq,diem);
-                Toast.makeText(KetQuaActivity.this, "Luu Thanh Cong !", Toast.LENGTH_SHORT).show();
-                finish();
-                dialogInterface.dismiss();
+                Toast.makeText(KetQuaActivity.this, "Lưu thành công !", Toast.LENGTH_SHORT).show();
+//                finish();
+
             }
         });
         builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
             }
         });
+        builder.setCancelable(false);
         builder.show();
+
     }
 
     public void Thoat(View view) {

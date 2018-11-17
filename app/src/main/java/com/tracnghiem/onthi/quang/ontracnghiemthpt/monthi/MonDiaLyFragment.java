@@ -41,7 +41,10 @@ public class MonDiaLyFragment extends Fragment {
         arrayList.add(new Exam(" Địa Lý : đề số 2"));
         arrayList.add(new Exam(" Địa Lý : đề số 3"));
         arrayList.add(new Exam(" Địa Lý : đề số 4"));
-
+        arrayList.add(new Exam(" Địa Lý : đề số 5"));
+        arrayList.add(new Exam(" Địa Lý : đề số 6"));
+        arrayList.add(new Exam(" Địa Lý : đề số 7"));
+        arrayList.add(new Exam(" Địa Lý : đề số 8"));
         examAdapter = new ExamAdapter(getActivity(), arrayList);
         gridView.setAdapter(examAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -51,6 +54,7 @@ public class MonDiaLyFragment extends Fragment {
                 intent.putExtra("masodekiemtra", i + 1);
                 intent.putExtra("monhoc", "DiaLy");
                 startActivity(intent);
+
             }
         });
 

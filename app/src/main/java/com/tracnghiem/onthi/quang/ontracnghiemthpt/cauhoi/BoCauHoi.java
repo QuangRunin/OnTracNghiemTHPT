@@ -17,7 +17,7 @@ public class BoCauHoi {
     public ArrayList<CauHoi> getcauhoi(int masodekiemtra,String monhoc){
         ArrayList<CauHoi> listdata = new ArrayList<>();
         SQLiteDatabase database = helper.getReadableDatabase();
-        Cursor cursor = database.rawQuery("SELECT * FROM DeThi WHERE masodekiemtra = '"+masodekiemtra+"'  AND monhoc = '"+monhoc+"'",null);
+        Cursor cursor = database.rawQuery("SELECT * FROM BoDeTT WHERE masodekiemtra = '"+masodekiemtra+"'  AND monhoc = '"+monhoc+"'",null);
         cursor.moveToFirst();
         do {
             CauHoi item;

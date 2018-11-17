@@ -1,6 +1,8 @@
 package com.tracnghiem.onthi.quang.ontracnghiemthpt.slide;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -26,8 +29,7 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class SlideActivity extends AppCompatActivity {
-
-    private static final int NUM_PAGES = 40;
+    private static final int NUM_PAGES = 20;
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private BoCauHoi boCauHoi;
@@ -54,7 +56,7 @@ public class SlideActivity extends AppCompatActivity {
         final Intent intent = getIntent();
         monhoc = intent.getStringExtra("monhoc");
         maso = intent.getIntExtra("masodekiemtra",0);
-        Thoigian = 10;
+        Thoigian = 25;
         time = new CounterClass(Thoigian*60*1000,1000);
         boCauHoi = new BoCauHoi(this);
         cauhoiList = new ArrayList<>();
@@ -87,12 +89,26 @@ public class SlideActivity extends AppCompatActivity {
     public  ArrayList<CauHoi> getData(){
         return cauhoiList;
     }
-
     @Override
     public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
         if (mPager.getCurrentItem() == 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(SlideActivity.this);
+            builder.setTitle("Bạn đang trong  quá trình làm bài !");
+            builder.setMessage("Xác nhận thoát !");
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    finish();
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                }
+            });
+            builder.show();
 
-            super.onBackPressed();
         } else {
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
         }
@@ -102,7 +118,6 @@ public class SlideActivity extends AppCompatActivity {
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
         }
-
         @Override
         public Fragment getItem(int position) {
             return SlideToanFragment.create(position,checkKqua);
@@ -190,7 +205,6 @@ public class SlideActivity extends AppCompatActivity {
         }
         else if(mPager.getCurrentItem()<=5){
             mPager.setCurrentItem(mPager.getCurrentItem()+4);
-
         }
         tvXemdiem.setVisibility(View.VISIBLE);
         tvKiemTra.setVisibility(View.GONE);
@@ -219,9 +233,23 @@ public class SlideActivity extends AppCompatActivity {
         @Override
         public void onFinish() {
             tvThoigian.setText("00:00");
+            time.cancel();
+            ShowAlertDialog();
+            result();
         }
-
+        public void ShowAlertDialog() {
+            AlertDialog.Builder builder = new AlertDialog.Builder(SlideActivity.this);
+            builder.setTitle("Thông Báo !");
+            builder.setMessage("Bạn đã hết thời gian làm bài !");
+            builder.setPositiveButton("Đồng Ý", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                }
+            });
+            builder.show();
+        }
     }
+
 
 
     // Phương thức xoa database viết vào hàm MainActivity

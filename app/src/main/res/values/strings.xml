@@ -46,4 +46,12 @@ giới cầm quyền nước này thi hành chính sách không can thiệp vào
 ngoài châu Mĩ. </string>
     <string name="app_chamngonn">Chinh phục mọi thứ </string>
     <string name="app_loginn">Trải Nghiệm Ngay</string>
+    <string name="action_hoten">Họ Tên </string>
+    <string name="action_monhoc">Môn học</string>
+    <string name="action_tongquan">Tổng quan</string>
+    <string name="action_diem">Tổng điểm</string>
+    <string name="action_ttSu">Trắc nghiệm Lịch Sử</string>
+    <string name="action_ttsinh">Trắc nghiệm Sinh học</string>
+    <string name="action_ttgdcd">Trắc nghiệm GDCD</string>
+    <string name="action_ttdialy">Trắc nghiệm Địa lý</string>
 </resources>

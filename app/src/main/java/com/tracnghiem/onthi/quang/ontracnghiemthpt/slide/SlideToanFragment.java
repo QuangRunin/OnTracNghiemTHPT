@@ -81,12 +81,9 @@ public class SlideToanFragment extends Fragment {
             public void onCheckedChanged(RadioGroup radioGroup, int check) {
                 cauhoiList.get(vitriTrang).choiceId = check;
                 cauhoiList.get(vitriTrang).setTraloi(getChoiceId(check));
-
 //                Toast.makeText(getActivity(), "Đây là đáp án"+i, Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
     public CauHoi getItem(int posion){
         return cauhoiList.get(posion);
