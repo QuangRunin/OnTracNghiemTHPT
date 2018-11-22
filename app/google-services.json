@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "168052665797",
+    "firebase_url": "https://ontracnghiemthpt-copy.firebaseio.com",
+    "project_id": "ontracnghiemthpt-copy",
+    "storage_bucket": "ontracnghiemthpt-copy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168052665797:android:5ebd652f85dbb784",
+        "android_client_info": {
+          "package_name": "com.tracnghiem.onthi.quang.ontracnghiemthpt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "168052665797-59chiska23oh4u6v0psglhp8g0u4gjqs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tracnghiem.onthi.quang.ontracnghiemthpt",
+            "certificate_hash": "b8870a9bf4451c3b88ee3e35ba098872e3799c6f"
+          }
+        },
+        {
+          "client_id": "168052665797-g2q3p90djv3sukiq1kd948fn34i1kca3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRpF4hrRfF3rlOlsRxCdaZuoZ4aDnL71E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "168052665797-g2q3p90djv3sukiq1kd948fn34i1kca3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
