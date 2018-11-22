@@ -45,7 +45,7 @@ public class KetQuaActivity extends AppCompatActivity {
         Intent intent = getIntent();
         cauHois_List = (ArrayList<CauHoi>) intent.getExtras().getSerializable("cauhoiList");
         checkKetQua();
-        diem = soCauDung * 0.25;
+        diem = soCauDung * 0.5;
         tvChuatraloi.setText(""+chuaTraloi);
         tvSocausai.setText(""+soCausai);
         tvsoCaudung.setText(""+soCauDung);
@@ -64,12 +64,14 @@ public class KetQuaActivity extends AppCompatActivity {
         }
     }
     public void LamLai(View view) {
+        finish();
+
     }
 
     public void LuuDiem(View view) {
-        insertHoaodon();
+        insertDiem();
     }
-    public void insertHoaodon() {
+    public void insertDiem() {
         final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
         builder.setTitle("Lưu kết quả !");
         LayoutInflater inflater = (LayoutInflater) builder.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -86,13 +88,12 @@ public class KetQuaActivity extends AppCompatActivity {
         builder.setPositiveButton("Lưu", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Button button = ((AlertDialog) dialogInterface).getButton(AlertDialog.BUTTON_POSITIVE);
                 String hoten = edthoten.getText().toString();
                 String monhoc =  tvmonhocdialog.getText().toString();
                 String tq = tvtongquan.getText().toString();
                 tkDiem.insertDiem(hoten,monhoc,tq,diem);
                 Toast.makeText(KetQuaActivity.this, "Lưu thành công !", Toast.LENGTH_SHORT).show();
-//                finish();
+                finish();
 
             }
         });

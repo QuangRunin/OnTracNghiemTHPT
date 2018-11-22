@@ -37,6 +37,7 @@ public class MonDiaLyFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         gridView = getActivity().findViewById(R.id.grviewdialy);
+
         arrayList.add(new Exam(" Địa Lý : đề số 1"));
         arrayList.add(new Exam(" Địa Lý : đề số 2"));
         arrayList.add(new Exam(" Địa Lý : đề số 3"));

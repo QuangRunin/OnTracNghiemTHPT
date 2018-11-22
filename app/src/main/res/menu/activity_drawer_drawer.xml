@@ -34,8 +34,12 @@
         </item>
     </group>
 
-    <item android:title="Danh Mục Khác">
+    <item android:title="Mục Khác">
         <menu>
+            <item
+                android:id="@+id/nav_tintuc"
+                android:icon="@drawable/ic_autorenew_black_24dp"
+                android:title="Tin Tức" />
             <item
                 android:id="@+id/nav_thongke"
                 android:icon="@drawable/ic_local_offer_black_24dp"
