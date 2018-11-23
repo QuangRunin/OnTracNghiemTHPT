@@ -2,8 +2,9 @@ package com.tracnghiem.onthi.quang.ontracnghiemthpt.tintuc;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,11 +15,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Toast;
 
-import com.tracnghiem.onthi.quang.ontracnghiemthpt.DrawerActivity;
-import com.tracnghiem.onthi.quang.ontracnghiemthpt.ManHinhChaoctivity;
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.R;
 
 import org.w3c.dom.Document;
@@ -30,8 +28,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,38 +43,65 @@ public class TinTucFragment extends Fragment {
     private AdapterXML adapterLab;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
-    TinTucChiTietActivity activity;
-    ProgressDialog progressDialog;
-
     public TinTucFragment() {
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_tin_tuc, container, false);
+
         recyclerView = view.findViewById(R.id.recyclerview);
         final ProgressDialog progress = new ProgressDialog(getActivity());
-        progress.setTitle("Chờ chút");
-        progress.setMessage("Đang tải dữ liệu...");
+        progress.setMessage("Đang tải dữ liệu.....");
+        progress.setCanceledOnTouchOutside(true);
         progress.show();
         Runnable progressRunnable = new Runnable() {
-
             @Override
             public void run() {
                 progress.cancel();
+                checkInternet();
                 news = new ArrayList<>();
                 recyclerView.addItemDecoration(new VerticalSpace(20));
                 linearLayoutManager = new LinearLayoutManager(getActivity(),linearLayoutManager.VERTICAL,false);
-                final String lik ="https://thptquocgia.edu.vn/rss/";
-                new Readdata().execute(lik);
             }
         };
         Handler pdCanceller = new Handler();
-        pdCanceller.postDelayed(progressRunnable, 2000);
+        pdCanceller.postDelayed(progressRunnable, 3000);
 
         return view;
+    }
+    private boolean checkInternet(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo ==null){
+            final ProgressDialog progress = new ProgressDialog(getActivity());
+            progress.setTitle("Không có kết nối Internet !");
+            progress.setMessage("Đang thử lại kết nối lại...");
+            progress.setCancelable(true);
+            progress.show();
+            return false;
+        }
+        if(!networkInfo.isConnected()){
+            final ProgressDialog progress = new ProgressDialog(getActivity());
+            progress.setTitle("Không có kết nối Internet !");
+            progress.setMessage("Đang thử lại kết nối lại...");
+            progress.setCancelable(true);
+            progress.show();
+            return false;
+
+        }
+        if(!networkInfo.isAvailable()){
+            final ProgressDialog progress = new ProgressDialog(getActivity());
+            progress.setTitle("Không có kết nối Internet !");
+            progress.setMessage("Đang thử lại kết nối lại...");
+            progress.setCancelable(true);
+            progress.show();
+            return false;
+        }
+        else{
+        String lik ="https://thptquocgia.edu.vn/rss/";
+        new Readdata().execute(lik);
+        return true;}
     }
 
     class Readdata extends AsyncTask<String, Integer, String> {
@@ -93,24 +116,26 @@ public class TinTucFragment extends Fragment {
             XMLDOMParser xmldomParser = new XMLDOMParser();
             Document document = xmldomParser.getDocument(s);
             NodeList nodeList = document.getElementsByTagName("item");
+            NodeList nodeListdescription = document.getElementsByTagName("description");
             String title = "";
             String summary = "";
             String link = "";
+            String pubDate = "";
             for(int i=0; i < nodeList.getLength(); i++){
-//                    String data = nodeList1.item(i+1).getTextContent();
-//                Pattern pattern = Pattern.compile("<img[^>]+src\\s*=\\s*['\"]['\"]([^'\"]+)['\"][^>]*>");
-//                Matcher matcher = pattern.matcher(data);
-//                if(matcher.find()){
-//                    summary=matcher.group(1);
-//                    Log.e("Hinh anh",summary+"................."+i);
-//                }
+                String cdata = nodeListdescription.item(i+1).getTextContent();
+                Pattern p = Pattern.compile("<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>");
+                Matcher  matcher= p.matcher(cdata);
+                if (matcher.find()){
+                    summary = matcher.group(1);
+                    Log.e("Hinh Anh",""+summary+""+i);
+                }
                 Element element = (Element) nodeList.item(i);
                 title = xmldomParser.getValue(element, "title");
-                summary = xmldomParser.getValue(element, "description");
+                pubDate = xmldomParser.getValue(element, "pubDate");
                 link = xmldomParser.getValue(element, "link");
-                news.add(new News(title, summary,link));
+                news.add(new News(title, summary,link,pubDate));
             }
-            adapterLab = new AdapterXML(this,activity,news);
+            adapterLab = new AdapterXML(getActivity(),news);
             recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setAdapter(adapterLab);
             super.onPostExecute(s);
