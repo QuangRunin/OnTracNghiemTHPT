@@ -18,6 +18,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <ImageView
+                android:src="@drawable/muathi"
                 android:background="@drawable/boder_img"
                 android:id="@+id/imgOntap"
                 android:layout_width="65dp"

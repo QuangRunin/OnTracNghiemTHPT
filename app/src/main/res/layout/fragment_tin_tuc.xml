@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             >
             <ImageView
+                android:id="@+id/imgtintuc"
                 android:src="@drawable/muathi"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"

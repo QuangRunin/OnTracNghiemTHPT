@@ -5,7 +5,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.tracnghiem.onthi.quang.ontracnghiemthpt"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -33,4 +33,5 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.google.firebase:firebase-database:16.0.1'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.github.shadowalker77:wp7progressbar:1.0.1'
 }

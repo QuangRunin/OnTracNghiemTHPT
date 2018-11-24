@@ -15,6 +15,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.R;
@@ -42,6 +46,7 @@ public class TinTucFragment extends Fragment {
     private ArrayList<News> news;
     private AdapterXML adapterLab;
     private RecyclerView recyclerView;
+    private ImageView imageView;
     private LinearLayoutManager linearLayoutManager;
     public TinTucFragment() {
     }
@@ -51,6 +56,10 @@ public class TinTucFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_tin_tuc, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerview);
+        imageView =  view.findViewById(R.id.imgtintuc);
+        Animation animSlide = AnimationUtils.loadAnimation(getActivity(),
+                R.anim.slide);
+        imageView.startAnimation(animSlide);
         final ProgressDialog progress = new ProgressDialog(getActivity());
         progress.setMessage("Đang tải dữ liệu.....");
         progress.setCanceledOnTouchOutside(true);

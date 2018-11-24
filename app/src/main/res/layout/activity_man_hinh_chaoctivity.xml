@@ -5,29 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ManHinhChaoctivity">
-
     <ImageView
+        android:id="@+id/imgmhc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_gravity="center_vertical"
         android:src="@drawable/manhinhchao" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="57dp"
+    <ir.alirezabdn.wp7progress.WP7ProgressBar
+        android:id="@+id/wp7progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="155dp"
-        android:layout_marginLeft="155dp"
-        android:layout_marginEnd="153dp"
-        android:layout_marginRight="153dp"
-        android:layout_marginBottom="40dp"
-        android:progressDrawable="@drawable/loading" />
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="100dp"
+        app:animationDuration="3000"
+        app:indicatorColor="@color/colorPrimaryDark"
+        app:indicatorHeight="5"
+        app:indicatorRadius="5"
+        app:interval="50" />
 
 </RelativeLayout>
