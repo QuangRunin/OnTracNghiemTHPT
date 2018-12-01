@@ -1,12 +1,16 @@
 package com.tracnghiem.onthi.quang.ontracnghiemthpt;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -14,14 +18,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tracnghiem.onthi.quang.ontracnghiemthpt.cauhoi.CauHoi;
-import com.tracnghiem.onthi.quang.ontracnghiemthpt.slide.SlideActivity;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.modeltracnghiem.CauHoi;
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.thongke.TkDiem;
 
 import java.util.ArrayList;
 
 public class KetQuaActivity extends AppCompatActivity {
-            ArrayList<CauHoi> cauHois_List = new ArrayList<CauHoi>();
+    private ShareDialog shareDialog;
+    private Button buttonshare;
+    String TAG = "LoginFaceActivity";
+    private CallbackManager manager;
+            ArrayList<CauHoi> cauHois_List = new ArrayList<>();
             int chuaTraloi = 0;
             int soCauDung = 0;
             int soCausai = 0;
@@ -33,10 +46,39 @@ public class KetQuaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ket_qua);
-//        style text
-//        TextView textView1 = (TextView) findViewById(R.id.t);
-//        Typeface typeface = Typeface.createFromAsset(getAssets(), "fontt/fff.ttf");
-//        textView1.setTypeface(typeface);
+        buttonshare = findViewById(R.id.btnShareKQ);
+        shareDialog = new ShareDialog(KetQuaActivity.this);
+        manager = CallbackManager.Factory.create();
+        buttonshare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkInternet();
+            }
+        });
+
+        manager = CallbackManager.Factory.create();
+        shareDialog.registerCallback(manager, new FacebookCallback<Sharer.Result>() {
+            @Override
+            public void onSuccess(Sharer.Result result) {
+                Toast.makeText(KetQuaActivity.this.getApplicationContext(), "Share success!", Toast.LENGTH_SHORT).show();
+                Log.e(TAG,"Fb onSuccess");
+            }
+
+            @Override
+            public void onCancel() {
+                Toast.makeText(KetQuaActivity.this.getApplicationContext(), "Did not share", Toast.LENGTH_SHORT).show();
+                Log.e(TAG,"Fb onCancel");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Toast.makeText(KetQuaActivity.this.getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                Log.e(TAG,"Fb onError");
+            }
+        }, 90);
+
+
+
         tkDiem = new TkDiem(KetQuaActivity.this);
         tvChuatraloi = findViewById(R.id.tvchualam);
         tvSocausai = findViewById(R.id.tvCauSai);
@@ -46,10 +88,10 @@ public class KetQuaActivity extends AppCompatActivity {
         cauHois_List = (ArrayList<CauHoi>) intent.getExtras().getSerializable("cauhoiList");
         checkKetQua();
         diem = soCauDung * 0.5;
-        tvChuatraloi.setText(""+chuaTraloi);
-        tvSocausai.setText(""+soCausai);
-        tvsoCaudung.setText(""+soCauDung);
-        tvDiem.setText(""+diem);
+        tvChuatraloi.setText(""+chuaTraloi+" câu");
+        tvSocausai.setText(""+soCausai +" câu");
+        tvsoCaudung.setText(""+soCauDung+" câu");
+        tvDiem.setText(""+diem +" điểm");
     }
     public void checkKetQua(){
         for (int i = 0 ; i < cauHois_List.size();i++){
@@ -63,6 +105,7 @@ public class KetQuaActivity extends AppCompatActivity {
 
         }
     }
+
     public void LamLai(View view) {
         finish();
 
@@ -127,4 +170,38 @@ public class KetQuaActivity extends AppCompatActivity {
         });
         builder.show();
     }
+    private boolean checkInternet(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)KetQuaActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo ==null){
+            final ProgressDialog progress = new ProgressDialog(KetQuaActivity.this);
+            progress.setMessage("Không có kết nối mạng...");
+            progress.setCancelable(true);
+            progress.show();
+            return false;
+        }
+        if(!networkInfo.isConnected()){
+            final ProgressDialog progress = new ProgressDialog(KetQuaActivity.this);
+            progress.setMessage("Không có kết nối mạng...");
+            progress.setCancelable(true);
+            progress.show();
+            return false;
+        }
+        if(!networkInfo.isAvailable()){
+            final ProgressDialog progress = new ProgressDialog(KetQuaActivity.this);
+            progress.setMessage("Không có kết nối mạng...");
+            progress.setCancelable(true);
+            progress.show();
+            return false;
+        }
+        else{
+            ShareLinkContent content = new ShareLinkContent.Builder()
+                    .setContentUrl(Uri.parse("https://drive.google.com/drive/u/0/folders/1dT4JgX0Zik4KF3PpoPKPCtcqnrYQLHa0"))
+                    .setQuote("Ôn Tập THPT "+" - "+" "+
+                            "Thành tích : "+diem +" điểm")
+                    .build();
+            shareDialog.show(content);
+            return true;}
+    }
+
 }

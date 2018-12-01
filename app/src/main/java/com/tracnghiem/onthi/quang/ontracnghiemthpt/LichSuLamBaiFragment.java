@@ -18,12 +18,12 @@ import com.tracnghiem.onthi.quang.ontracnghiemthpt.thongke.TkDiem;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ThongKeFragment extends Fragment {
+public class LichSuLamBaiFragment extends Fragment {
         private ListView listView;
         private ThongKeAdapter thongKeAdapter;
         private TkDiem tkDiem;
 
-    public ThongKeFragment() {
+    public LichSuLamBaiFragment() {
         // Required empty public constructor
     }
 

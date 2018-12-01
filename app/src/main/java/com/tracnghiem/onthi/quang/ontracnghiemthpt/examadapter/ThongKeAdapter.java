@@ -9,7 +9,7 @@ import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.R;
-import com.tracnghiem.onthi.quang.ontracnghiemthpt.cauhoi.CauHoi;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.modeltracnghiem.CauHoi;
 
 import java.util.ArrayList;
 import java.util.List;

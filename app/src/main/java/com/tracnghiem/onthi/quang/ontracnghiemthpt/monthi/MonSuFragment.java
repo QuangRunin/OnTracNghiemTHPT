@@ -1,9 +1,7 @@
 package com.tracnghiem.onthi.quang.ontracnghiemthpt.monthi;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -11,15 +9,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebViewClient;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
 
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.R;
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.examadapter.ExamAdapter;
-import com.tracnghiem.onthi.quang.ontracnghiemthpt.modelexam.Exam;
-import com.tracnghiem.onthi.quang.ontracnghiemthpt.slide.SlideActivity;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.modelontap.Exam;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.slidetracnghiem.SlideActivity;
 
 import java.util.ArrayList;
 

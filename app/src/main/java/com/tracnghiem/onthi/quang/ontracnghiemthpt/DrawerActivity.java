@@ -23,6 +23,8 @@ import com.tracnghiem.onthi.quang.ontracnghiemthpt.monthi.MonSinhFragment;
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.monthi.MonSuFragment;
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.tintuc.TinTucFragment;
 
+import java.io.IOException;
+
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
@@ -38,15 +40,6 @@ public class DrawerActivity extends AppCompatActivity
         DatabaseReference  myRef = database.getReference("mesage");
         myRef.setValue("Hello, World");
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -60,12 +53,12 @@ public class DrawerActivity extends AppCompatActivity
         DatabseHelper databseHelper = new DatabseHelper(this);
 //        databseHelper.deleteDataBase();
 //        Toast.makeText(this, "Xóa thành công", Toast.LENGTH_SHORT).show();
-//        try {
-//            databseHelper.createDataBase();
+        try {
+            databseHelper.createDataBase();
 //            Toast.makeText(this, "Cap nhat thanh cong", Toast.LENGTH_SHORT).show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -95,19 +88,10 @@ public class DrawerActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.drawer, menu);
         return true;
     }
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+
 
 
 
@@ -155,7 +139,7 @@ public class DrawerActivity extends AppCompatActivity
         }if (id == R.id.nav_thongke) {
             Intent intent = new Intent(this,FadeActivity.class);
             startActivity(intent);
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new ThongKeFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new LichSuLamBaiFragment()).commit();
             getSupportActionBar().setTitle("Lịch Sử Làm Bài");
             drawerLayout.closeDrawers();
         }

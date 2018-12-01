@@ -158,5 +158,15 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content" />
     </LinearLayout>
+    <Button
+        android:text="Chia Sẻ "
+        android:layout_marginTop="10dp"
+        android:background="@drawable/boder_button"
+        android:textColor="@color/colorWhite"
+        android:id="@+id/btnShareKQ"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+      />
 
 </LinearLayout>

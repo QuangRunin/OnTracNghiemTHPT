@@ -17,19 +17,14 @@ import java.io.OutputStream;
 public class DatabseHelper extends SQLiteOpenHelper {
     private static String DB_PATH = "/data/data/com.tracnghiem.onthi.quang.ontracnghiemthpt/databases/";
     private static String DB_NAME = "BoDeThiThu.sqlite";
-
-
     private SQLiteDatabase myDataBase;
     private final Context myContext;
-
     public DatabseHelper(Context context) {
         super(context,DB_NAME,null,1);
         this.myContext = context;
     }
-
     public void openDataBase() throws SQLException {
 
-        //Open the database
         String myPath = DB_PATH + DB_NAME;
         myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
 
@@ -54,39 +49,26 @@ public class DatabseHelper extends SQLiteOpenHelper {
 
     private boolean checkDataBase() {
         SQLiteDatabase checkDB = null;
-
         try {
             String myPath = DB_PATH + DB_NAME;
             checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
         } catch (SQLiteException e) {
-            //database chua ton tai
         }
-
         if (checkDB != null)
             checkDB.close();
 
         return checkDB != null ? true : false;
     }
-
     private void copyDataBase() throws IOException {
-
-        //mo db trong thu muc assets nhu mot input stream
         InputStream myInput = myContext.getAssets().open(DB_NAME);
-
-        //duong dan den db se tao
         String outFileName = DB_PATH + DB_NAME;
-
-        //mo db giong nhu mot output stream
         OutputStream myOutput = new FileOutputStream(outFileName);
-
-        //truyen du lieu tu inputfile sang outputfile
         byte[] buffer = new byte[1024];
         int length;
         while ((length = myInput.read(buffer)) > 0) {
             myOutput.write(buffer, 0, length);
         }
 
-        //Dong luon
         myOutput.flush();
         myOutput.close();
         myInput.close();
@@ -94,15 +76,13 @@ public class DatabseHelper extends SQLiteOpenHelper {
     }
 
     public void createDataBase() throws IOException {
-        boolean dbExist = checkDataBase(); //kiem tra db
+        boolean dbExist = checkDataBase();
 
         if (dbExist) {
-            //khong lam gi ca, database da co roi
-//            copyDataBase();
         } else {
             this.getReadableDatabase();
             try {
-                copyDataBase(); //chep du lieu
+                copyDataBase();
             } catch (IOException e) {
                 throw new Error("Error copying database");
             }

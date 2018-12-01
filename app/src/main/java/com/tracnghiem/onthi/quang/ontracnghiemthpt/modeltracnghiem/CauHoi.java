@@ -1,4 +1,4 @@
-package com.tracnghiem.onthi.quang.ontracnghiemthpt.cauhoi;
+package com.tracnghiem.onthi.quang.ontracnghiemthpt.modeltracnghiem;
 
 import java.io.Serializable;
 

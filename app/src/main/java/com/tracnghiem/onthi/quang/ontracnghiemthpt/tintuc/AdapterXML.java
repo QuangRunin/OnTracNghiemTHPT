@@ -25,7 +25,6 @@ public class AdapterXML extends RecyclerView.Adapter<AdapterXML.HolderXML> {
         this.contextt = contextt;
         this.newss = newss;
     }
-
     @NonNull
     @Override
     public HolderXML onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {

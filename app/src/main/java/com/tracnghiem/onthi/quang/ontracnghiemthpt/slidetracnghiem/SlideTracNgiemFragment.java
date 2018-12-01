@@ -1,23 +1,18 @@
-package com.tracnghiem.onthi.quang.ontracnghiemthpt.slide;
+package com.tracnghiem.onthi.quang.ontracnghiemthpt.slidetracnghiem;
 
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.R;
-import com.tracnghiem.onthi.quang.ontracnghiemthpt.cauhoi.CauHoi;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.modeltracnghiem.CauHoi;
 
 import java.util.ArrayList;
 
@@ -28,7 +23,7 @@ import java.util.ArrayList;
 
  * create an instance of this fragment.
  */
-public class SlideToanFragment extends Fragment {
+public class SlideTracNgiemFragment extends Fragment {
     ArrayList<CauHoi> cauhoiList;
     public static  final String PAGE = "page";
     public static  final String CHECK = "check";
@@ -38,7 +33,7 @@ public class SlideToanFragment extends Fragment {
     private RadioButton rdA,rdB,rdC,rdD;
     private int checkKqua;
 
-    public SlideToanFragment() {
+    public SlideTracNgiemFragment() {
         // Required empty public constructor
     }
 
@@ -131,8 +126,8 @@ public class SlideToanFragment extends Fragment {
 
 
     }
-    public  static SlideToanFragment create(int pageNumber,int checkKq){
-        SlideToanFragment fragment = new SlideToanFragment();
+    public  static SlideTracNgiemFragment create(int pageNumber, int checkKq){
+        SlideTracNgiemFragment fragment = new SlideTracNgiemFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(PAGE,pageNumber);
         bundle.putInt(CHECK,checkKq);

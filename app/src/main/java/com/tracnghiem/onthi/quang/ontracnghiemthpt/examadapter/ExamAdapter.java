@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.R;
-import com.tracnghiem.onthi.quang.ontracnghiemthpt.modelexam.Exam;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.modelontap.Exam;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,6 @@ public class ExamAdapter extends ArrayAdapter<Exam> {
     public ExamAdapter(@NonNull Context context, ArrayList<Exam> exams) {
         super(context,0, exams);
     }
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

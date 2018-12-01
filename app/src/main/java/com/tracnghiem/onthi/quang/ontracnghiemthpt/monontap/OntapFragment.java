@@ -12,11 +12,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.R;
-import com.tracnghiem.onthi.quang.ontracnghiemthpt.examadapter.ExamAdapter;
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.examadapter.OntapAdapter;
-import com.tracnghiem.onthi.quang.ontracnghiemthpt.modelexam.Exam;
-import com.tracnghiem.onthi.quang.ontracnghiemthpt.modelexam.ExamOntap;
-import com.tracnghiem.onthi.quang.ontracnghiemthpt.slide.SlideActivity;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.modelontap.ExamOntap;
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.slideontap.SlideOntapActivity;
 
 import java.util.ArrayList;

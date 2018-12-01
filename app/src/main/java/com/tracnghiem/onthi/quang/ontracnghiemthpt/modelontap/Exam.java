@@ -1,4 +1,4 @@
-package com.tracnghiem.onthi.quang.ontracnghiemthpt.modelexam;
+package com.tracnghiem.onthi.quang.ontracnghiemthpt.modelontap;
 
 public class Exam {
     private String name;

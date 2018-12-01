@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.tracnghiem.onthi.quang.ontracnghiemthpt.cauhoi.CauHoi;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.modeltracnghiem.CauHoi;
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.database.DatabseHelper;
 
 import java.util.ArrayList;

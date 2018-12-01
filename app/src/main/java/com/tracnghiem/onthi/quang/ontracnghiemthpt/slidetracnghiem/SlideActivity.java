@@ -1,4 +1,4 @@
-package com.tracnghiem.onthi.quang.ontracnghiemthpt.slide;
+package com.tracnghiem.onthi.quang.ontracnghiemthpt.slidetracnghiem;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -14,15 +14,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.KetQuaActivity;
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.R;
-import com.tracnghiem.onthi.quang.ontracnghiemthpt.cauhoi.BoCauHoi;
-import com.tracnghiem.onthi.quang.ontracnghiemthpt.cauhoi.CauHoi;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.modeltracnghiem.BoCauHoi;
+import com.tracnghiem.onthi.quang.ontracnghiemthpt.modeltracnghiem.CauHoi;
 import com.tracnghiem.onthi.quang.ontracnghiemthpt.examadapter.CheckDapanAdapter;
 
 import java.util.ArrayList;
@@ -40,6 +44,7 @@ public class SlideActivity extends AppCompatActivity {
     private int maso;
     private int Thoigian;
     private int checkKqua = 0 ;
+    private ImageView imgsecond,imghour,imgminute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +54,29 @@ public class SlideActivity extends AppCompatActivity {
         tvKiemTra = findViewById(R.id.tvKiemTra);
         tvThoigian = findViewById(R.id.tvTimer);
         tvXemdiem = findViewById(R.id.tvScore);
+        imghour = findViewById(R.id.imahour);
+        imgsecond = findViewById(R.id.imgagesecond);
+        imgminute = findViewById(R.id.imgaminute);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
         mPager.setPageTransformer(true, new DepthPageTransformer());
+        RotateAnimation rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        rotate.setDuration(60000);
+        rotate.setRepeatCount(Animation.INFINITE);
+        rotate.setInterpolator(new LinearInterpolator());
+        imgsecond.startAnimation(rotate);
+
+        RotateAnimation rotate1 = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        rotate1.setDuration(3600000);
+        rotate1.setRepeatCount(Animation.INFINITE);
+        rotate1.setInterpolator(new LinearInterpolator());
+        imgminute.startAnimation(rotate1);
+
+        RotateAnimation rotate2 = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        rotate2.setDuration(86400000);
+        rotate2.setRepeatCount(Animation.INFINITE);
+        rotate2.setInterpolator(new LinearInterpolator());
+        imghour.startAnimation(rotate2);
 
         final Intent intent = getIntent();
         monhoc = intent.getStringExtra("monhoc");
@@ -120,7 +145,7 @@ public class SlideActivity extends AppCompatActivity {
         }
         @Override
         public Fragment getItem(int position) {
-            return SlideToanFragment.create(position,checkKqua);
+            return SlideTracNgiemFragment.create(position,checkKqua);
 
         }
 
@@ -250,14 +275,4 @@ public class SlideActivity extends AppCompatActivity {
         }
     }
 
-
-
-    // Phương thức xoa database viết vào hàm MainActivity
-    //        try {
-//            db.deleteDataBase();
-//            Toast.makeText(this, "Xóa thành công", Toast.LENGTH_SHORT).show();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            Toast.makeText(this, "bi loi rui", Toast.LENGTH_SHORT).show();
-//        }
 }

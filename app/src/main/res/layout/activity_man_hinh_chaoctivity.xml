@@ -4,15 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".ManHinhChaoctivity">
+
     <ImageView
         android:id="@+id/imgmhc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_vertical"
+        android:layout_marginTop="0dp"
         android:src="@drawable/manhinhchao" />
-
     <ir.alirezabdn.wp7progress.WP7ProgressBar
         android:id="@+id/wp7progressBar"
         android:layout_width="match_parent"
@@ -26,5 +29,14 @@
         app:indicatorHeight="5"
         app:indicatorRadius="5"
         app:interval="50" />
+
+    <TextView
+        android:id="@+id/tvmhc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:text=" ® Nh.Quang" />
 
 </RelativeLayout>
